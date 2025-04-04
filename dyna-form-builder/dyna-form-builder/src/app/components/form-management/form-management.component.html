@@ -1,0 +1,27 @@
+<div class="form-management-container">
+  <h2>Form Management</h2>
+  
+  <div *ngIf="forms.length > 0; else noForms">
+    <ul>
+      <li *ngFor="let form of forms">
+        <span>{{ form.name }}</span>
+        <button (click)="editForm(form)">Edit</button>
+        <button (click)="deleteForm(form.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noForms>
+    <p>No forms available. Create a new one!</p>
+  </ng-template>
+</div>
+<div class="form-management-actions">
+  <button (click)="createForm()">Create New Form</button>
+  <button (click)="importForm()">Import Form</button>
+  <button (click)="exportForms()">Export Forms</button>
+  <button (click)="syncForms()">Sync Forms</button>
+  <button (click)="resetForms()">Reset Forms</button>
+</div>
+<div class="form-management-notes">
+  <h3>Notes</h3>
+  <p>Ensure to backup your forms before performing any destructive actions.</p>

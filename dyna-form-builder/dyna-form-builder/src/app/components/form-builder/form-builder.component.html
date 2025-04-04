@@ -1,0 +1,33 @@
+<div class="form-builder">
+  <h2>Dynamic Form Builder</h2>
+
+
+  <div cdkDropList [cdkDropListData]="availableFields" (cdkDropListDropped)="drop($event)">
+    <h3>Available Fields</h3>
+    <div *ngFor="let field of availableFields" cdkDrag>
+      {{ field.label }}
+    </div>
+  </div>
+  <div cdkDropList [cdkDropListData]="formFields" (cdkDropListDropped)="drop($event)">
+    <h3>Form Fields</h3>
+    <div *ngFor="let field of formFields" cdkDrag>
+      {{ field.label }}
+      <button (click)="removeField(field)">Remove</button>
+    </div>
+  <div cdkDropList [cdkDropListData]="formFields" (cdkDropListDropped)="drop($event)">
+    <h3>Form Preview</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div *ngFor="let field of formFields">
+        <label>{{ field.label }}</label>
+        <input *ngIf="field.type === 'text'" [formControlName]="field.controlName" type="text">
+        <textarea *ngIf="field.type === 'textarea'" [formControlName]="field.controlName"></textarea>
+        <select *ngIf="field.type === 'select'" [formControlName]="field.controlName">
+          <option value="">Select an option</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+  

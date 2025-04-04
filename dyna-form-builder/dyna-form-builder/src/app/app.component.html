@@ -1,0 +1,14 @@
+<div class="app-container">
+  <header>
+    <h1>Dynamic Form Builder</h1>
+    <nav>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/form-builder" *ngIf="isAdmin()">Form Builder</a>
+      <a routerLink="/form-management" *ngIf="isAdmin()">Form Management</a>
+      <a routerLink="/form-submission">Submit Form</a>
+    </nav>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

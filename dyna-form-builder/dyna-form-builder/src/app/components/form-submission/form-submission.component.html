@@ -1,0 +1,35 @@
+<div class="form-submission-container">
+  <h2>Submit a Form</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of formFields">
+      <label>{{ field.label }}</label>
+      
+   
+      <input *ngIf="field.type === 'text' || field.type === 'date'" 
+             [formControlName]="field.name" [type]="field.type" />
+
+     
+      <textarea *ngIf="field.type === 'textarea'" 
+                [formControlName]="field.name"></textarea>
+
+      
+      <select *ngIf="field.type === 'select'" [formControlName]="field.name">
+        <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+      </select>
+
+      <div *ngIf="field.type === 'checkbox'">
+        <label *ngFor="let option of field.options; let i = index">
+          <input type="checkbox" (change)="onCheckboxChange($event, field.name, option)" /> 
+          {{ option }}
+        </label>
+      </div>
+      <div *ngIf="field.type === 'radio'">
+        <label *ngFor="let option of field.options">
+          <input type="radio" [formControlName]="field.name" [value]="option" /> {{ option }}
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

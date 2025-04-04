@@ -1,0 +1,12 @@
+<div class="app-container">
+  <h1>{{ title }}</h1>
+
+  <ng-container *ngIf="!isAuthenticated(); else formPage">
+    <app-auth></app-auth> <
+  </ng-container>
+
+  <ng-template #formPage>
+    <app-form-submission></app-form-submission> 
+    <button (click)="logout()">Logout</button>
+  </ng-template>
+</div>
